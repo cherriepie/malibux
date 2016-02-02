@@ -1,4 +1,35 @@
 %p#notice= notice
-= link_to 'Edit', edit_client_path(@client)
-|
-= link_to 'Back', clients_path
+/= link_to 'Edit', edit_client_path(@client)
+.pull-right
+  %button.btn.btn-lg.btn-info-outline.new-server-popover{"data-content" => "#{render 'servers/client_server_form'}", "data-toggle" => "popover", "data-placement"=>"bottom", :title => "Popover title", :type => "button", "data-html"=>"true"} 
+    New Server
+%h5 
+  %span
+    %a{:href=>root_path}
+      Home
+  %span /
+  %span
+    %a{:href=>clients_path}
+      Clients
+  %span /
+  %span= @client.name
+
+%table
+  %thead
+    %tr
+      %th{colspan: "3"}
+  %tbody
+    - @client.servers.each do |server|
+      %tr
+        %td= server.name
+        %td= link_to 'Show', server
+        %td= link_to 'Edit', edit_server_path(server)
+        %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+:javascript
+  $(function () {
+    $('.new-server-popover').popover({
+      container: 'body'
+    })
+  })

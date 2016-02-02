@@ -24,8 +24,6 @@ class RollsController < ApplicationController
   # POST /rolls
   # POST /rolls.json
 
-
-
   def roll_update
     @server = Server.find(params[:id])  
     @server.rolls.create(

@@ -1,5 +1,8 @@
 %p#notice= notice
-%h1 Listing Servers
+.pull-right
+  %a.btn.btn-info{:href=>new_server_path}
+    New Server
+  
 %table
   %thead
     %tr
@@ -13,3 +16,6 @@
         %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
 = link_to 'New Server', new_server_path
+
+
+%p#notice= notice

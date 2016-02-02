@@ -25,7 +25,7 @@ class RollCallsController < ApplicationController
   # POST /roll_calls.json
 
   def init_roll
-    @name = Time.now.strftime("%Y %m %d") + Date.today.strftime("%A") + " Server Check "
+    @name = "Backup Check " + Time.now.strftime("%Y_%m_%d_%A") 
     @roll_call = RollCall.create(:name=>@name)
     Server.all.each do |s|
       @roll = @roll_call.rolls.create(:name=>Time.now, :server=>s)
