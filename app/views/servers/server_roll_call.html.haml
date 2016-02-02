@@ -1,0 +1,4 @@
+-Server.all.each do |server|
+  /= render 'single_form'
+  %p server.name
+  =link_to "check", server_check_server_path(server)

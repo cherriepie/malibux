@@ -1,0 +1,8 @@
+= simple_form_for(r) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input_field :notes
+    /= f.input_field :status
+
+  .form-actions
+    = f.button :submit, "Check"

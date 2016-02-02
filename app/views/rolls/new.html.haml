@@ -1,0 +1,16 @@
+%h1 New Roll
+=link_to "Initiate Server Check", init_roll_roll_path(1)
+
+
+-Roll.all.each do |r|
+  = render 'form',  r: r
+  %p 
+    =r.server.name
+    =r.name
+
+
+
+  /=link_to "check", server_check_roll_path(server.id)
+
+
+/= link_to 'Back', rolls_path

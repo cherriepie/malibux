@@ -1,0 +1,33 @@
+%p#notice= notice
+/=link_to "Initiate Server Check", init_roll_roll_path(1)
+%table
+  %thead
+    %tr
+      %th Name
+      %th Client
+      %th Notes
+      %th Last Updated
+      %th Status
+      %th Status Check
+  %tbody
+    - @rolls.each do |r|
+      %tr
+        %td
+          =r.server.name
+        %td
+          Client
+          /= render 'form',  r: r
+        %td
+          =r.notes
+        %td 
+          =time_ago_in_words(r.updated_at)
+          ago
+        %td
+          =r.status
+        %td 
+          = link_to 'check', check_server_roll_path(r)
+          = link_to 'uncheck', uncheck_server_roll_path(r)
+
+
+/  = link_to 'New Roll', new_roll_path
+
