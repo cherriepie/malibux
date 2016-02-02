@@ -1,7 +1,7 @@
 %p#notice= notice
 %h4
   =@roll_call.name
-%table
+%table.table
   %thead
     %tr
       %th Name
@@ -12,11 +12,11 @@
       %th Last Updated
   %tbody
     - @roll_call.rolls.each do |r|
-      %tr
+      %tr{r.status == 1 ? {class: "table-success"} : {}}
         %td
           =r.server.name
         %td
-          Client
+          Server
           /= render 'form',  r: r
         %td
           =r.notes
@@ -24,8 +24,8 @@
         %td
           =r.status
         %td 
-          = link_to 'check', check_server_roll_path(r)
-          = link_to 'uncheck', uncheck_server_roll_path(r)
+          %a.icon.icon-check{:href=>check_server_roll_path(r)}
+          %a.icon.icon-cross{:href=>uncheck_server_roll_path(r)}         
         %td 
           =time_ago_in_words(r.updated_at)
           ago
