@@ -30,7 +30,7 @@ class RollCallsController < ApplicationController
     Server.all.each do |s|
       @roll = @roll_call.rolls.create(:name=>Time.now, :server=>s)
     end
-    redirect_to :back
+    redirect_to @roll_call
   end
 
 

@@ -1,0 +1,31 @@
+a {
+    color: inherit;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #9DC6D8;
+    color:white;
+
+  
+}
+
+.main{
+	background-color:#C6CBCC;
+	position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar > a{
+    display:block;
+    color:white;
+}

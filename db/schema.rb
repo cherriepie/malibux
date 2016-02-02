@@ -49,17 +49,7 @@ ActiveRecord::Schema.define(version: 20160202034158) do
 
   add_index "servers", ["client_id"], name: "index_servers_on_client_id", using: :btree
 
-  create_table "tasks", force: :cascade do |t|
-    t.integer  "status",     limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.integer  "server_id",  limit: 4
-  end
-
-  add_index "tasks", ["server_id"], name: "index_tasks_on_server_id", using: :btree
-
   add_foreign_key "rolls", "roll_calls"
   add_foreign_key "rolls", "servers"
   add_foreign_key "servers", "clients"
-  add_foreign_key "tasks", "servers"
 end

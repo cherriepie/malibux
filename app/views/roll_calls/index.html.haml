@@ -1,17 +1,21 @@
 %p#notice= notice
-%h1 Listing Roll Calls
-%table
-  %thead
-    %tr
-      %th{colspan: "4"}
+.text-center
+  %a.btn.btn-lg.btn-warning{:href=>init_roll_roll_call_path(self)}
+    Initiate Today's Backup Check
+%hr
+%h5 Recent Backup Checks
+%table.table.table-inverse
   %tbody
     - @roll_calls.each do |roll_call|
       %tr
-        %td= roll_call.name
-        %td= link_to 'Show', roll_call
-        %td= link_to 'Edit', edit_roll_call_path(roll_call)
-        %td= link_to 'Destroy', roll_call, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to roll_call.name, roll_call
+        %td= roll_call.created_at.strftime("%a %d %b %Y")
+        /%td= link_to 'Show', roll_call
+        /%td= link_to 'Edit', edit_roll_call_path(roll_call)
+        /%td= link_to 'Destroy', roll_call, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
-= link_to 'New Roll call', new_roll_call_path
+/= link_to 'New Roll call', new_roll_call_path
 
 =link_to "Initiate Server Check", init_roll_roll_call_path(self)
+=link_to "I want to add a new server", new_server_path
+=link_to "I want to add a new client", new_client_path
