@@ -8,7 +8,9 @@
   %tbody
     - @roll_calls.each do |roll_call|
       %tr
-        %td= link_to roll_call.name, roll_call
+        %td
+          %a.icon.icon-aie{:href=>roll_call_path(roll_call)}
+            =roll_call.name
         %td= roll_call.created_at.strftime("%a | %b %d %Y")
 
 

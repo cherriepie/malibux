@@ -15,6 +15,7 @@ class ServersController < ApplicationController
   # GET /servers/new
   def new
     @server = Server.new
+    @client = Client.find(params[:id])  
   end
 
   # GET /servers/1/edit
@@ -32,7 +33,7 @@ class ServersController < ApplicationController
 
     respond_to do |format|
       if @server.save
-        format.html { redirect_to @server, notice: 'Server was successfully created.' }
+        format.html { redirect_to :back, notice: 'Server was successfully created.' }
         format.json { render :show, status: :created, location: @server }
       else
         format.html { render :new }

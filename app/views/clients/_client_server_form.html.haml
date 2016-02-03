@@ -1,8 +1,8 @@
-= simple_form_for(Server.new) do |f|
+= simple_form_for (Server.new) do |f|
   = f.error_notification
   .form-inputs
-    =f.hidden_field :client_id, :value => 1
     = f.input :name
+    =f.hidden_field :client_id, :value => @client.id
   .form-actions
     = f.button :submit, :class => "btn btn-info-outline"
-    
+

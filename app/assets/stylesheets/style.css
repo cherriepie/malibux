@@ -2,6 +2,10 @@ a, a:hover {
     color: inherit;
 }
 
+body{
+    background-color:#C6CBCC;
+}
+
 .sidebar{
     position: fixed;
     top: 0;
@@ -13,15 +17,7 @@ a, a:hover {
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #9DC6D8;
-    color:white;
-
-  
-}
-
-.main{
-	background-color:#C6CBCC;
-    top: 0;
-    bottom: 0;
+    color:white;  
 }
 
 .sidebar > a{

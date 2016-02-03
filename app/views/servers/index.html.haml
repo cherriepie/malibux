@@ -1,21 +1,24 @@
 %p#notice= notice
-.pull-right
-  %a.btn.btn-info{:href=>new_server_path}
-    New Server
-  
-%table
-  %thead
-    %tr
-      %th{colspan: "3"}
+
+%h5 
+  %span
+    %a{:href=>root_path}
+      Home
+  %span /
+  %span
+    All your servers! :o
+
+%table.table.table-sm
   %tbody
-    - @servers.each do |server|
+    - Client.all.each do |c|
       %tr
-        %td server.name
-        %td= link_to 'Show', server
-        %td= link_to 'Edit', edit_server_path(server)
-        %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Server', new_server_path
-
-
-%p#notice= notice
+        %th.thead-inverse
+          %span.icon.icon-home
+          %a{:href=>client_path(c)}
+            = c.name
+      - c.servers.each do |server|
+        %tr
+          %td= server.name
+          %td= link_to 'Show', server
+          %td= link_to 'Edit', edit_server_path(server)
+          %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
