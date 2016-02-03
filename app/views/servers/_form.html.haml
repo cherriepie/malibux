@@ -9,8 +9,12 @@
         - @server.errors.full_messages.each do |message|
           = message
         %span.icon.icon-emoji-sad
-  .form-inline
-    .form-group.row
-      %label.form-control-label{:for => "exampleInputName2"} Server Name
+  .form-group.row
+    %label.col-sm-1.form-control-label{:for => ""} Name
+    .col-sm-5
       = f.input_field :name, {:class=>"form-control"}
-      = f.button :submit, :class=>"btn btn-info"
+  /.form-group.row
+  /  %label.col-sm-1.form-control-label{:for => ""} Description
+  /  .col-sm-5
+  /    = f.text_area :description, {:class=>"form-control"}
+  = f.button :submit, :class=>"btn btn-info"

@@ -1,35 +1,65 @@
-%p#notice= notice
+/%p#notice= notice
+%br
+.pull-right
+  .dropdown
+    %span#dropdownMenu1.icon.icon-cog.header-btn{"aria-expanded" => "false", "aria-haspopup" => "false", "data-toggle" => "dropdown", :type => "button"}
+    .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
+      %span.dropdown-item.icon.icon-new{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
+        Delete
 %h4
   =@roll_call.name
-%table.table
+%br
+%table.table.table-sm
   %thead
     %tr
-      %th Name
       %th Client
-      %th Notes
+      %th Server
       %th Status
-      %th Status Check
-      %th Last Updated
+      %th Action
+      %th Notes
+      %th.right Last Updated
   %tbody
     - @roll_call.rolls.each do |r|
       %tr{r.status == 1 ? {class: "table-success"} : {}}
-        %td
-          =r.server.name
-        %td
-          Server
-          /= render 'form',  r: r
-        %td
-          =r.notes
-        %td
+        %td#rc_client
+          -if r.server.present? && r.server.client.present?
+            =r.server.client.name
+          -else
+            =r.client_name
+            %span.icon.icon-traffic-cone{"data-placement" => "top", "data-toggle" => "tooltip", :title => "(The original client no longer exist)", :type => "button"}
+        %td#rc_server
+          -if r.server.present?
+            =r.server.name
+          -else
+            =r.server_name
+            %span.icon.icon-traffic-cone{"data-placement" => "top", "data-toggle" => "tooltip", :title => "(The original server no longer exist)", :type => "button"}
+        %td#rc_status
           =r.status
-        %td 
+        %td#rc_options
           %a.icon.icon-check{:href=>check_server_roll_path(r)}
           %a.icon.icon-cross{:href=>uncheck_server_roll_path(r)}         
-        %td 
+        %td#rc_notes
+          =r.notes 
+        %td.right#rc_last
           =time_ago_in_words(r.updated_at)
           ago
 
-
-
-|
-= link_to 'Back to all my server checks', roll_calls_path
+.modal.fade.bd-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Are you sure?
+      .modal-body
+        %h6 This is a destructive operation.
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        = link_to @roll_call, method: :delete do
+          %button.btn.btn-danger
+            Delete!
+      
+:javascript
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

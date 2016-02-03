@@ -28,7 +28,7 @@ class RollCallsController < ApplicationController
     @name = "Backup Check " + Time.now.strftime("%Y_%m_%d_%A") 
     @roll_call = RollCall.create(:name=>@name)
     Server.all.each do |s|
-      @roll = @roll_call.rolls.create(:name=>Time.now, :server=>s)
+      @roll = @roll_call.rolls.create(:name=>Time.now, :server=>s, :server_name =>s.name, :client_name=>s.client.name)
     end
     redirect_to @roll_call
   end

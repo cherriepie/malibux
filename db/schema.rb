@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202034158) do
+ActiveRecord::Schema.define(version: 20160203063048) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160202034158) do
     t.string   "notes",        limit: 255
     t.integer  "status",       limit: 4,   default: 0
     t.integer  "roll_call_id", limit: 4
+    t.string   "server_name",  limit: 255
+    t.string   "client_name",  limit: 255
   end
 
   add_index "rolls", ["roll_call_id"], name: "index_rolls_on_roll_call_id", using: :btree

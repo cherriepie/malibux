@@ -1,12 +1,15 @@
 = simple_form_for(@client) do |f|
   - if @client.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@client.errors.count, "error")
-        prohibited this client from being saved:
-      %ul
+    .text-danger#error_explanation
+      %h4
+        Opps!
         - @client.errors.full_messages.each do |message|
-          %li= message
-  =f.input :name
-  .actions
-    = f.submit
+          = message
+        %span.icon.icon-emoji-sad
+      %br
+  .form-group.row
+    %label.col-sm-1.form-control-label Name
+    .col-sm-3
+      =f.input_field :name, {:class=>"form-control"}
+  /=f.text_field :description
+  = f.button :submit, :class=>"btn btn-info"

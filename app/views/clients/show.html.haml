@@ -1,5 +1,19 @@
-%p#notice= notice
+/%p#notice= notice
 /= link_to 'Edit', edit_client_path(@client)
+%br
+.pull-right
+  .dropdown
+    %span#dropdownMenu1.icon.icon-cog.header-btn{"aria-expanded" => "false", "aria-haspopup" => "false", "data-toggle" => "dropdown", :type => "button"}
+    .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
+      %a.dropdown-item{:href => edit_client_path(@client)} 
+        %span.icon.icon-brush
+          Edit client
+      %a.dropdown-item{:href => "#"} 
+        %span.icon.icon-new
+          Delete client
+.pull-right
+  %span.icon.icon-help-with-circle.header-btn{"data-placement" => "left", "data-toggle" => "tooltip", :title => "Tip: Click on server name to edit.", :type => "button"}
+  &nbsp; 
 
 %h5 
   %span
@@ -10,23 +24,43 @@
     %a{:href=>clients_path}
       Clients
   %span /
-  %span= @client.name
+  %span.icon.icon-home
+    = @client.name
   &nbsp;&nbsp;
   %button.btn.btn-lg.btn-info-outline.new-server-popover{"data-content" => "#{render 'client_server_form'}", "data-toggle" => "popover", "data-placement"=>"bottom", :title => "Create New Server", :type => "button", "data-html"=>"true"} 
     New Server
-%table.table
+  
+%table.table.table-sm
   %tbody
     - @client.servers.each do |server|
       %tr
-        %td= server.name
-        %td= link_to 'Show', server
-        %td= link_to 'Edit', edit_server_path(server)
-        %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
-
-
+        %td
+          = link_to edit_server_path(server) do
+            =server.name
+        %td.right
+          /= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
+          %span.icon.icon-trash{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
+        .modal.fade.bd-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog.modal-sm
+            .modal-content
+              .modal-header
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} &times;
+                %h4#myModalLabel.modal-title Are you sure?
+              .modal-body
+                %h6 This is a destructive operation.
+              .modal-footer
+                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+                = link_to server, method: :delete do
+                  %button.btn.btn-danger
+                    Delete!
 :javascript
   $(function () {
     $('.new-server-popover').popover({
       container: 'body'
     })
+  })
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
   })

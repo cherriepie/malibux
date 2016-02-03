@@ -1,4 +1,4 @@
-%p#notice= notice
+/%p#notice= notice
 .text-center
   %a.btn.btn-lg.btn-warning{:href=>init_roll_roll_call_path(self)}
     Initiate Today's Backup Check
@@ -10,7 +10,8 @@
       %tr
         %td
           %a.icon.icon-aie{:href=>roll_call_path(roll_call)}
-            =roll_call.name
+            .icon.icon-list
+              =roll_call.name
         %td= roll_call.created_at.strftime("%a | %b %d %Y")
 
 

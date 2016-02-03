@@ -1,8 +1,7 @@
-= simple_form_for (Server.new) do |f|
+= simple_form_for (Client.new) do |f|
   = f.error_notification
   .form-group
     = f.input :name,:required=>true, label: false, placeholder: "Name"
     /= f.text_area :description, label: false, placeholder: "Description", :class=>"form-control"
-    =f.hidden_field :client_id, :value => @client.id
     = f.button :submit, :class => "btn btn-info-outline"
 

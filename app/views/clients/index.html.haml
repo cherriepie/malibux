@@ -1,12 +1,15 @@
 %p#notice= notice
 .pull-right
-  %a.btn.btn-info{:href=>new_client_path}
-    New Client
+  
 %h5 
   %span
     %a{:href=>root_path}
       Home
   %span  / Clients
+  &nbsp;&nbsp;
+  %button.btn.btn-lg.btn-info-outline.new-client-popover{"data-content" => "#{render 'mini_client_form'}", "data-toggle" => "popover", "data-placement"=>"bottom", :title => "Create New Client", :type => "button", "data-html"=>"true"} 
+    New Client
+
 %br
 %table.table
   %tbody
@@ -16,5 +19,12 @@
           %span.icon.icon-home
           %a{:href=>client_path(client)}
             = client.name
-        %td= link_to 'Edit', edit_client_path(client)
-        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+
+:javascript
+  $(function () {
+    $('.new-client-popover').popover({
+      container: 'body'
+    })
+  })
