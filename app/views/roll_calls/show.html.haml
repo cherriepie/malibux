@@ -41,8 +41,9 @@
         %td#rc_notes
           =r.notes 
         %td.right#rc_last
-          =time_ago_in_words(r.updated_at)
-          ago
+          -unless r.updated_at == r.created_at
+            =time_ago_in_words(r.updated_at)
+            ago
 
 .modal.fade.bd-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-sm
