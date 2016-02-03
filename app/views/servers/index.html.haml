@@ -1,4 +1,6 @@
 %p#notice= notice
+.pull-right
+
 
 %h5 
   %span
@@ -6,21 +8,36 @@
       Home
   %span /
   %span
-    Here's all your servers! :o
+    Here's all your servers! 
+  %span.icon.icon-help-with-circle{"data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Tip: Click on server name to edit. Click on client name if you want to add more servers for that client. ", :type => "button"}
 
+%br
 %table.table.table-sm
   %tbody
     - Client.all.each do |c|
-      %tr
-        %th.thead-inverse
-          %span.icon.icon-home
-          %a{:href=>client_path(c)}
-            = c.name
-      - c.servers.each do |server|
+      %thead.thead-inverse
         %tr
-          %td
-            &nbsp;&nbsp;&nbsp;
-            %span.icon.icon-laptop
-            = server.name
-          %td= link_to 'Edit', edit_server_path(server)
-          %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
+          %th{:colspan=>"3"}
+            %span.icon.icon-home
+            %a{:href=>client_path(c)}
+              = c.name
+      - c.servers.each do |server|
+        %tbody
+          %tr
+            %td
+              %span.icon.icon-laptop
+              %a{:href=> edit_server_path(server)}
+                = server.name
+            %td
+              = server.description
+            %td
+              .text-right
+                = link_to server, method: :delete, data: { confirm: 'Are you sure?' } do
+                  %span.icon.icon-trash
+
+
+:javascript
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
