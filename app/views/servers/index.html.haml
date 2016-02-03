@@ -6,7 +6,7 @@
       Home
   %span /
   %span
-    All your servers! :o
+    Here's all your servers! :o
 
 %table.table.table-sm
   %tbody
@@ -18,7 +18,9 @@
             = c.name
       - c.servers.each do |server|
         %tr
-          %td= server.name
-          %td= link_to 'Show', server
+          %td
+            &nbsp;&nbsp;&nbsp;
+            %span.icon.icon-laptop
+            = server.name
           %td= link_to 'Edit', edit_server_path(server)
           %td= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }

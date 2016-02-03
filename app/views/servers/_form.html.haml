@@ -1,12 +1,16 @@
 = simple_form_for(@server) do |f|
   - if @server.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@server.errors.count, "error")
-        prohibited this server from being saved:
-      %ul
+    .text-danger#error_explanation
+      /%h4
+      /  = pluralize(@server.errors.count, "error")
+      /  prohibited this server from being saved:
+      %h4
+        Opps!
         - @server.errors.full_messages.each do |message|
-          %li= message
-  .actions
-    = f.input :name
-    = f.submit
+          = message
+        %span.icon.icon-emoji-sad
+  .form-inline
+    .form-group.row
+      %label.form-control-label{:for => "exampleInputName2"} Server Name
+      = f.input_field :name, {:class=>"form-control"}
+      = f.button :submit, :class=>"btn btn-info"
