@@ -11,13 +11,10 @@
     -else
       =r.server_name
       %span.icon.icon-traffic-cone{"data-placement" => "top", "data-toggle" => "tooltip", :title => "(The original server no longer exist)", :type => "button"}
-  %td#rc_status
-    #value
-      =r.status
+  /%td#rc_status
+  /  =r.status
   %td#rc_options
     -if r.status ==1
-      
-
       %a#unchecked{:href=>uncheck_server_roll_path(r)}   
         =icon('check-square-o')      
     -else 
@@ -25,7 +22,7 @@
         =icon('square-o')
   %td#rc_notes
     /=r.notes 
-    = best_in_place r, :notes, :as => :input 
+    = best_in_place r, :notes, :as => :input, :inner_class=>"notes_in_place form-control form-control-sm", :place_holder => '+', :class=>'notes_in_place_init form-inline'
   %td.right#rc_last
     -unless r.updated_at == r.created_at
       =time_ago_in_words(r.updated_at)

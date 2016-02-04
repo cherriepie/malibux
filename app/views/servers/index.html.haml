@@ -23,11 +23,12 @@
         %tbody
           %tr
             %td
-              %span.icon.icon-laptop
-              %a{:href=> edit_server_path(server)}
-                = server.name
+              %strong
+                %span.icon.icon-laptop
+                &nbsp;&nbsp;
+                = best_in_place server, :name, :as => :input, :inner_class=>"c_server_in_place_inner form-control form-control-sm", :place_holder => '+', :class=>'c_server_in_place form-inline'
             %td
-              = server.description
+              = best_in_place server, :description, :as => :input, :inner_class=>"c_server_in_place_inner form-control form-control-sm", :place_holder => '+', :class=>'c_server_in_place form-inline'
             %td.right
               %span.icon.icon-trash{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
             .modal.fade.bd-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -50,3 +51,7 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 
+  $(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+  });

@@ -38,23 +38,58 @@ td#rc_last{
     width:18%;
 }
 
+td#notes{
+    width:20%;
+}
+
 td#rc_client{
     width:20%;
 }
 
 td#rc_server{
-    width:20%;
+    width:15%;
 }
 
 td#rc_status{
     width:5%;
 }
 
-td#rc_options{
-    width:5%;
+td#rc_options, th#rc_options{
+    width:10%;
+    text-align:center;
 }
 
 tr.row-success{
     background-color:#8CC152;
     color:white;
+}
+
+.notes_in_place{
+    color:black;
+}
+
+.notes_in_place_init{
+    color:#E6E9ED;
+    position:absolute;
+}
+
+.notes_in_place.form-control.form-control-sm, .c_server_in_place_inner{
+    line-height:1;    
+}
+
+.notes_in_place_init.form-inline{
+    width:100%;
+}
+
+%span.best_in_place_cname_wrapper{
+    display:inline-block;
+    width:100%;
+}
+
+.cname_in_place, .c_server_in_place{
+    position:absolute;
+}
+
+.cname_in_place_inner{
+    margin-top:-10px;
 }

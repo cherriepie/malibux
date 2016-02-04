@@ -14,8 +14,13 @@
 .pull-right
   %span.icon.icon-help-with-circle.header-btn{"data-placement" => "left", "data-toggle" => "tooltip", :title => "Tip: Click on server name to edit.", :type => "button"}
   &nbsp; 
+.pull-right
+  %button.btn.btn-info-outline.new-server-popover{"data-content" => "#{render 'client_server_form'}", "data-toggle" => "popover", "data-placement"=>"bottom", :title => "Create New Server", :type => "button", "data-html"=>"true"} 
+    New Server
+  &nbsp;
+  &nbsp;
 
-%h5 
+%h5
   %span
     %a{:href=>root_path}
       Home
@@ -24,19 +29,25 @@
     %a{:href=>clients_path}
       Clients
   %span /
-  %span.icon.icon-home
-    = @client.name
-  &nbsp;&nbsp;
-  %button.btn.btn-lg.btn-info-outline.new-server-popover{"data-content" => "#{render 'client_server_form'}", "data-toggle" => "popover", "data-placement"=>"bottom", :title => "Create New Server", :type => "button", "data-html"=>"true"} 
-    New Server
-  
+  %span.icon.icon-home.best_in_place_cname_wrapper
+  &nbsp;
+  = best_in_place @client, :name, :as => :input, :inner_class=>"cname_in_place_inner form-control form-control-sm", :place_holder => '+', :class=>'cname_in_place form-inline'  
+%br
+
 %table.table.table-sm
+  %thead.thead-inverse
+    %tr
+      %th Server Name
+      %th Description
+      %th
   %tbody
     - @client.servers.each do |server|
       %tr
         %td
-          = link_to edit_server_path(server) do
-            =server.name
+          %strong
+            = best_in_place server, :name, :as => :input, :inner_class=>"c_server_in_place_inner form-control form-control-sm", :place_holder => '+', :class=>'c_server_in_place form-inline'
+        %td
+          = best_in_place server, :description, :as => :input, :inner_class=>"c_server_in_place_inner form-control form-control-sm", :place_holder => '+', :class=>'c_server_in_place form-inline'
         %td.right
           /= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
           %span.icon.icon-trash{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
@@ -64,3 +75,8 @@
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
+
+  $(document).ready(function() {
+    /* Activating Best In Place */
+    jQuery(".best_in_place").best_in_place();
+  });
