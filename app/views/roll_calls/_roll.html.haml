@@ -1,4 +1,4 @@
-%tr{r.status == 1 ? {class: "table-success"} : {}}
+%tr{r.status == 1 ? {class: "row-success"} : {}}
   %td#rc_client
     -if r.server.present? && r.server.client.present?
       =r.server.client.name
@@ -15,8 +15,14 @@
     #value
       =r.status
   %td#rc_options
-    %a.icon.icon-check#checked{:href=>check_server_roll_path(r)}
-    %a.icon.icon-cross#unchecked{:href=>uncheck_server_roll_path(r)}         
+    -if r.status ==1
+      
+
+      %a#unchecked{:href=>uncheck_server_roll_path(r)}   
+        =icon('check-square-o')      
+    -else 
+      %a#checked{:href=>check_server_roll_path(r)}
+        =icon('square-o')
   %td#rc_notes
     /=r.notes 
     = best_in_place r, :notes, :as => :input 

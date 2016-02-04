@@ -53,3 +53,8 @@ td#rc_status{
 td#rc_options{
     width:5%;
 }
+
+tr.row-success{
+    background-color:#8CC152;
+    color:white;
+}
