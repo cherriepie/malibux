@@ -10,6 +10,7 @@ class RollCallsController < ApplicationController
   # GET /roll_calls/1
   # GET /roll_calls/1.json
   def show
+    @results = @roll_call.rolls.all
   end
 
   # GET /roll_calls/new

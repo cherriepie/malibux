@@ -1,0 +1,19 @@
+!!! XML
+%Workbook{:xmlns => "urn:schemas-microsoft-com:office:spreadsheet", "xmlns:html" => "http://www.w3.org/TR/REC-html40", "xmlns:o" => "urn:schemas-microsoft-com:office:office", "xmlns:ss" => "urn:schemas-microsoft-com:office:spreadsheet", "xmlns:x" => "urn:schemas-microsoft-com:office:excel"}
+  %Worksheet{"ss:Name" => "Sheet1"}
+    %Table
+      %Row
+        %Cell
+          %Data{"ss:Type" => "String"} Client
+        %Cell
+          %Data{"ss:Type" => "String"} Name
+        %Cell
+          %Data{"ss:Type" => "String"} Notes
+      - @servervs.each do |s|
+        %Row
+          %Cell
+            %Data{"ss:Type" => "Number"}= s.client.name
+          %Cell
+            %Data{"ss:Type" => "String"}= s.name
+          %Cell
+            %Data{"ss:Type" => "String"}= s.notes
