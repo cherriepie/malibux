@@ -49,9 +49,8 @@
         %td
           = best_in_place server, :description, :as => :input, :inner_class=>"c_server_in_place_inner form-control form-control-sm", :place_holder => '+', :class=>'c_server_in_place form-inline'
         %td.right
-          /= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' }
-          %span.icon.icon-trash{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
-        .modal.fade.bd-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+          %span.icon.icon-trash{"data-target" => "#{"#"+ server.id.to_s}", "data-toggle" => "modal", :type => "button"} 
+        .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1", :id=>"#{server.id.to_s}"}
           .modal-dialog.modal-sm
             .modal-content
               .modal-header
@@ -60,6 +59,7 @@
                 %h4#myModalLabel.modal-title Are you sure?
               .modal-body
                 %h6 This is a destructive operation.
+                =server.name
               .modal-footer
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
                 = link_to server, method: :delete do

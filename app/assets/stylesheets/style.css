@@ -93,3 +93,8 @@ tr.row-success{
 .cname_in_place_inner{
     margin-top:-10px;
 }
+
+em.current {
+    font-weight: 900;
+    text-decoration: underline;
+}

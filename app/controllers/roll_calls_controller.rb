@@ -4,7 +4,7 @@ class RollCallsController < ApplicationController
   # GET /roll_calls
   # GET /roll_calls.json
   def index
-    @roll_calls = RollCall.all
+    @roll_calls = RollCall.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /roll_calls/1

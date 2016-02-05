@@ -15,10 +15,5 @@
               =roll_call.name
         %td= roll_call.created_at.strftime("%a | %b %d %Y")
 
-
-        /%td= link_to 'Show', roll_call
-        /%td= link_to 'Edit', edit_roll_call_path(roll_call)
-        /%td= link_to 'Destroy', roll_call, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-/= link_to 'New Roll call', new_roll_call_path
-
+.pull-right
+  = will_paginate @roll_calls
