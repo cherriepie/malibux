@@ -1,4 +1,4 @@
-%tr{r.status == 1 ? {class: "row-success"} : {}}
+%tr{r.status == "Checked" ? {class: "row-success"} : {}}
   %td#rc_client
     -if r.server.present? && r.server.client.present?
       =r.server.client.name
@@ -14,7 +14,7 @@
   /%td#rc_status
   /  =r.status
   %td#rc_options
-    -if r.status ==1
+    -if r.status == "Checked"
       %a#unchecked{:href=>uncheck_server_roll_path(r)}   
         =icon('check-square-o')      
     -else 

@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 20160203063048) do
 
   create_table "rolls", force: :cascade do |t|
     t.string   "name",         limit: 255
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.integer  "server_id",    limit: 4
     t.string   "notes",        limit: 255
-    t.integer  "status",       limit: 4,   default: 0
+    t.string   "status",       limit: 255, default: "Unchecked"
     t.integer  "roll_call_id", limit: 4
     t.string   "server_name",  limit: 255
     t.string   "client_name",  limit: 255

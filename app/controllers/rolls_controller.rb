@@ -33,13 +33,13 @@ class RollsController < ApplicationController
 
   def check_server
     Roll.find(params[:id]).update(
-      :status=>1)
+      :status=> "Checked")
     redirect_to :back
   end
 
   def uncheck_server
     Roll.find(params[:id]).update(
-      :status=>0)
+      :status=>"Unchecked")
     redirect_to :back
   end
 

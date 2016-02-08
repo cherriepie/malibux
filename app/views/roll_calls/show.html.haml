@@ -1,13 +1,15 @@
 /%p#notice= notice
 %br
-%a.btn.btn-lg.btn-info{:href=>roll_call_path(@roll_call,format: "csv")}
-  CSV
+
 .pull-right
   .dropdown
     %span#dropdownMenu1.icon.icon-cog.header-btn{"aria-expanded" => "false", "aria-haspopup" => "false", "data-toggle" => "dropdown", :type => "button"}
     .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
+      %a.dropdown-item.icon.icon-export{:href=>roll_call_path(@roll_call,format: "csv")}
+        CSV
       %span.dropdown-item.icon.icon-new{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
         Delete
+      
 %h4
   =@roll_call.name
 %br
