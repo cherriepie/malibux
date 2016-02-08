@@ -5,12 +5,22 @@ class RollCallsController < ApplicationController
   # GET /roll_calls.json
   def index
     @roll_calls = RollCall.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+
+    #respond_to do |format|
+    #  format.html
+    #  format.csv {send_data @roll_calls.to_csv, filename: "#{Date.today}.csv"}
+    #end
   end
 
   # GET /roll_calls/1
   # GET /roll_calls/1.json
   def show
     @results = @roll_call.rolls.all
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @results.to_csv, filename: "#{Date.today}.csv"}
+    end
   end
 
   # GET /roll_calls/new
