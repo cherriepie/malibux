@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :roll_calls do
     get :init_roll, on: :member, format: false 
+    
   end
 
   resources :rolls do
