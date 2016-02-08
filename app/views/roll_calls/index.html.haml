@@ -7,6 +7,12 @@
 %hr
 %h5 Recent Backup Checks
 %table.table.table-inverse
+  %thead
+    %tr
+      %th 
+        = sortable "name"
+      %th 
+        Date
   %tbody
     - @roll_calls.each do |roll_call|
       %tr

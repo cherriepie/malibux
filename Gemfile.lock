@@ -66,6 +66,7 @@ GEM
     bootstrap-datepicker-rails (1.5.0)
       railties (>= 3.0)
     bootstrap-select-wrapper-rails (1.6.3)
+    bootstrap-table-rails (1.9.1)
     builder (3.2.2)
     byebug (8.2.1)
     cancan (1.6.10)
@@ -255,6 +256,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha1)
   bootstrap-datepicker-rails
   bootstrap-select-wrapper-rails (~> 1.6.3)
+  bootstrap-table-rails
   byebug
   cancan
   cocoon

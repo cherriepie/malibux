@@ -58,6 +58,8 @@ gem 'jquery-ui-rails'
 
 gem 'omniauth-facebook'
 
+gem "bootstrap-table-rails"
+
 gem 'font-awesome-sass'
 
 gem 'best_in_place', '~> 3.0.1'

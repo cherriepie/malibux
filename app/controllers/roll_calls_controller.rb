@@ -1,25 +1,27 @@
 class RollCallsController < ApplicationController
   before_action :set_roll_call, only: [:show, :edit, :update, :destroy]
 
+  helper_method :sort_column, :sort_direction
+
   # GET /roll_calls
   # GET /roll_calls.json
   def index
-    @roll_calls = RollCall.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    #@roll_calls = RollCall.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @roll_calls = RollCall.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 10)
 
-    #respond_to do |format|
-    #  format.html
-    #  format.csv {send_data @roll_calls.to_csv, filename: "#{Date.today}.csv"}
-    #end
+    #@products = Product.order(sort_column + " " + sort_direction)
+
+
   end
 
   # GET /roll_calls/1
   # GET /roll_calls/1.json
-  def show
+  def show    
     @results = @roll_call.rolls.all
-
+    
     respond_to do |format|
       format.html
-      format.csv {send_data @results.to_csv, filename: "#{Date.today}.csv"}
+      format.csv {send_data @results.to_csv, filename: "#{@roll_call.name}.csv"}
     end
   end
 
@@ -92,5 +94,13 @@ class RollCallsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def roll_call_params
       params[:roll_call]
+    end
+
+    def sort_column
+      RollCall.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

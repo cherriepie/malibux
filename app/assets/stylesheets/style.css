@@ -98,3 +98,19 @@ em.current {
     font-weight: 900;
     text-decoration: underline;
 }
+
+
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+   background-color:black;
+}
+
+.pretty th .desc {
+   background-color:black;
+}

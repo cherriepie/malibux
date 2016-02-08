@@ -1,6 +1,5 @@
 /%p#notice= notice
 %br
-
 .pull-right
   .dropdown
     %span#dropdownMenu1.icon.icon-cog.header-btn{"aria-expanded" => "false", "aria-haspopup" => "false", "data-toggle" => "dropdown", :type => "button"}
@@ -9,14 +8,14 @@
         CSV
       %span.dropdown-item.icon.icon-new{"data-target" => ".bd-example-modal-sm", "data-toggle" => "modal", :type => "button"} 
         Delete
-      
 %h4
   =@roll_call.name
 %br
 %table.table.table-sm
   %thead
     %tr
-      %th Client
+      %th 
+        Client
       %th Server
       /%th Status
       %th#rc_options Action
