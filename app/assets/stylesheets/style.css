@@ -99,8 +99,6 @@ em.current {
     text-decoration: underline;
 }
 
-
-
 .pretty th .current {
   padding-right: 12px;
   background-repeat: no-repeat;
@@ -113,4 +111,10 @@ em.current {
 
 .pretty th .desc {
    background-color:black;
+}
+
+.dropdown-item>span{
+    display: block;
+    height:100%;
+    width:100%;
 }

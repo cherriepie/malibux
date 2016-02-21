@@ -5,12 +5,15 @@
   .dropdown
     %span#dropdownMenu1.icon.icon-cog.header-btn{"aria-expanded" => "false", "aria-haspopup" => "false", "data-toggle" => "dropdown", :type => "button"}
     .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
-      %a.dropdown-item{:href => edit_client_path(@client)} 
-        %span.icon.icon-brush
-          Edit client
-      %a.dropdown-item{:href => "#"} 
-        %span.icon.icon-new
-          Delete client
+      /%a.dropdown-item{:href => edit_client_path(@client)} 
+      /  %span.icon.icon-brush
+      /    Edit client
+      /= link_to 'Destroy', @client, method: :delete, data: { confirm: 'Are you sure?' }
+      .dropdown-item
+        %span.icon.icon-trash{"data-target" => "#del-client", "data-toggle" => "modal", :type => "button"} 
+          Delete
+
+
 .pull-right
   %button.btn.btn-info-outline.new-server-popover{"data-content" => "#{render 'client_server_form'}", "data-toggle" => "popover", "data-placement"=>"bottom", :title => "Create New Server", :type => "button", "data-html"=>"true"} 
     New Server
@@ -62,6 +65,23 @@
                 = link_to server, method: :delete do
                   %button.btn.btn-danger
                     Delete!
+
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1", :id=>"del-client"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Are you sure?
+      .modal-body
+        %h6 This is a destructive operation.
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        = link_to @client, method: :delete do
+          %button.btn.btn-danger
+            Delete!
+
+
 :javascript
   $(function () {
     $('.new-server-popover').popover({
