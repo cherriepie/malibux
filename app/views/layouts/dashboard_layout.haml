@@ -12,21 +12,19 @@
         .col-sm-3.col-md-2.sidebar
           =Time.now.strftime("%a | %b %d %Y")
           %hr
-          %h5.team_name
-            Squeeze Tech
-            %i.fa.fa-angle-down
-          .dropdown
-            %button.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-            Action
-            .dropdown-menu
-              %a.dropdown-item{:href => "#"} Action
-              %a.dropdown-item{:href => "#"} Another action
-              %a.dropdown-item{:href => "#"} Something else here
-              .dropdown-divider
-              %a.dropdown-item{:href => "#"} Separated link
-          %p.user_name
-            %i.fa.fa-user
-            Cherrie
+          .team_section
+            .dropdown
+              %a.team_name{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Squeeze Tech
+                %i.fa.fa-angle-down
+              .dropdown-menu
+                %a.dropdown-item{:href => "#"} Manage Your Team
+                .dropdown-divider
+                %a.dropdown-item{:href => destroy_user_session_path, :"data-method"=>"delete"} 
+                  Logout
+            %p.user_name
+              %i.fa.fa-user
+              Cherrie
           %hr
           %a{:href=>roll_calls_path}
             &#x23 My Backup Checks
@@ -35,11 +33,6 @@
             &#x23 My Clients
           %a{:href=>servers_path}
             &#x23 List All My Servers
-
-
-          = link_to('Logout', destroy_user_session_path, :method => :delete)
-
-
         .col-sm-9-col-sm-offset-3.col-md-10.col-md-offset-2
           = yield
 

@@ -119,6 +119,20 @@ em.current {
     width:100%;
 }
 
+a.team_name, a.team_name:hover{
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    text-decoration:none;
+}
+
 p.user_name{
     color:#e1edf3;
+}
+
+.team_section:hover{
+    background-color:#8db2c2;
 }
