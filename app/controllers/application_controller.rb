@@ -3,7 +3,21 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :authenticate
+  #before_filter :authenticate
+  
+  before_action :authenticate_user!
+
+  layout :layout_by_resource
+
+  protected
+
+  def layout_by_resource
+    if user_signed_in?
+      "dashboard_layout"
+    else
+      "application"
+    end
+  end
   
   protected
   def authenticate

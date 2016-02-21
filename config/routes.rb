@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :roll_calls do
     get :init_roll, on: :member, format: false 
     
