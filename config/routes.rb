@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :tenants
+
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
+
+  devise_scope :user do
+    get 'sign_in', to: 'devise/sessions#new'
+    get 'sign_up', to: 'devise/registrations#new'
+    #get 'users/edit', :to => 'users#show', :as => :user_root
+    #get 'passwords/sent', :to => 'users/passwords#sent'
+  end
 
   resources :roll_calls do
     get :init_roll, on: :member, format: false 

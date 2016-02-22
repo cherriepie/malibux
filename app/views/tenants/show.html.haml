@@ -1,0 +1,49 @@
+%p#notice= notice
+
+/%p#notice= notice
+%br
+%h5 
+  %span
+    %a{:href=>root_path}
+      Home
+  %span /
+  %span
+    %i.fa.fa-users
+    Team Management
+
+%ul.list-group
+  -@tenant.users.each do |u|
+    %li.list-group-item
+      .team_user_head
+        %i.fa.fa-user
+      -if u.role_id == 1
+        %span.label.label-success.label-pill Admin
+      %span.team_user_name
+        @
+        =u.name
+        •
+      %span.team_user_email
+        =u.email
+      %span.team_user_last_online
+        = time_ago_in_words(u.last_sign_in_at)
+        ago
+%br
+%table.table
+  %thead.thead-inverse
+    %tr
+      %th Display Name
+      %th Email
+      %th Role
+      %th Last Active
+  %tbody
+    -@tenant.users.each do |u|
+      %tr
+        %th
+          = u.name
+        %td 
+          = u.email 
+        %td 
+          = u.role.name
+        %td 
+          = time_ago_in_words(u.last_sign_in_at)
+          ago
